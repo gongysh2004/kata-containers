@@ -17,6 +17,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"syscall"
+	"time"
 
 	containerd_types "github.com/containerd/containerd/api/types"
 	"github.com/containerd/containerd/mount"
@@ -48,6 +49,16 @@ var defaultStartManagementServerFunc startManagementServerFunc = func(s *service
 }
 
 func create(ctx context.Context, s *service, r *taskAPI.CreateTaskRequest) (*container, error) {
+	if os.Getenv("DEBUG") != "" {
+		x := 1
+		println("{}", x)
+		for x < 20 {
+			time.Sleep(3 * time.Second)
+			println("Waiting for debugger connnect in ...")
+			x++
+		}
+		println("{}", x)
+	}
 	rootFs := vc.RootFs{}
 	if len(r.Rootfs) == 1 {
 		m := r.Rootfs[0]

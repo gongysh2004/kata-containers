@@ -129,7 +129,7 @@ checksum = "1b827f9d9f6c2fff719d25f5d44cbc8d2ef6df1ef00d055c5c14d5dc25529579"
 dependencies = [
  "libc",
  "log",
- "nix 0.23.1",
+ "nix",
  "regex",
 ]
 
@@ -434,7 +434,7 @@ dependencies = [
  "lazy_static",
  "libc",
  "logging",
- "nix 0.23.1",
+ "nix",
  "oci",
  "protobuf",
  "protocols",
@@ -521,19 +521,6 @@ name = "multimap"
 version = "0.8.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e5ce46fe64a9d73be07dcbe690a38ce1b293be448fd8ce1e6c1b8062c9f72c6a"
-
-[[package]]
-name = "nix"
-version = "0.20.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f5e06129fb611568ef4e868c14b326274959aa70ff7776e9d55323531c374945"
-dependencies = [
- "bitflags",
- "cc",
- "cfg-if",
- "libc",
- "memoffset",
-]
 
 [[package]]
 name = "nix"
@@ -858,7 +845,7 @@ dependencies = [
  "inotify",
  "lazy_static",
  "libc",
- "nix 0.23.1",
+ "nix",
  "oci",
  "path-absolutize",
  "protobuf",
@@ -1117,16 +1104,14 @@ dependencies = [
 
 [[package]]
 name = "ttrpc"
-version = "0.5.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66a973ce6d5eaa20c173635b29ffb660dafbc7ef109172c0015ba44e47a23711"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "byteorder",
  "futures",
  "libc",
  "log",
- "nix 0.20.2",
+ "nix",
  "protobuf",
  "protobuf-codegen-pure",
  "thiserror",
@@ -1136,9 +1121,7 @@ dependencies = [
 
 [[package]]
 name = "ttrpc-codegen"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "809eda4e459820237104e4b61d6b41bbe6c9e1ce6adf4057955e6e6722a90408"
+version = "0.3.0"
 dependencies = [
  "protobuf",
  "protobuf-codegen",
@@ -1148,9 +1131,9 @@ dependencies = [
 
 [[package]]
 name = "ttrpc-compiler"
-version = "0.4.1"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2978ed3fa047d8fd55cbeb4d4a61d461fb3021a90c9618519c73ce7e5bb66c15"
+checksum = "5b8eca0173efcd46aef85fe1f24dd21e6c1bfc0df5205d2a849ad64f6b57d3db"
 dependencies = [
  "derive-new",
  "prost",
@@ -1192,7 +1175,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e32675ee2b3ce5df274c0ab52d19b28789632406277ca26bffee79a8e27dc133"
 dependencies = [
  "libc",
- "nix 0.23.1",
+ "nix",
 ]
 
 [[package]]

@@ -809,19 +809,6 @@ dependencies = [
 
 [[package]]
 name = "nix"
-version = "0.20.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f5e06129fb611568ef4e868c14b326274959aa70ff7776e9d55323531c374945"
-dependencies = [
- "bitflags",
- "cc",
- "cfg-if 1.0.0",
- "libc",
- "memoffset",
-]
-
-[[package]]
-name = "nix"
 version = "0.22.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d3bb9a13fa32bc5aeb64150cd3f32d6cf4c748f8f8a417cce5d2eb976a8370ba"
@@ -1830,16 +1817,14 @@ dependencies = [
 
 [[package]]
 name = "ttrpc"
-version = "0.5.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "66a973ce6d5eaa20c173635b29ffb660dafbc7ef109172c0015ba44e47a23711"
+version = "0.6.0"
 dependencies = [
  "async-trait",
  "byteorder",
  "futures",
  "libc",
  "log",
- "nix 0.20.2",
+ "nix 0.23.1",
  "protobuf",
  "protobuf-codegen-pure",
  "thiserror",
@@ -1849,9 +1834,7 @@ dependencies = [
 
 [[package]]
 name = "ttrpc-codegen"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "809eda4e459820237104e4b61d6b41bbe6c9e1ce6adf4057955e6e6722a90408"
+version = "0.3.0"
 dependencies = [
  "protobuf",
  "protobuf-codegen",
@@ -1861,9 +1844,9 @@ dependencies = [
 
 [[package]]
 name = "ttrpc-compiler"
-version = "0.4.1"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2978ed3fa047d8fd55cbeb4d4a61d461fb3021a90c9618519c73ce7e5bb66c15"
+checksum = "5b8eca0173efcd46aef85fe1f24dd21e6c1bfc0df5205d2a849ad64f6b57d3db"
 dependencies = [
  "derive-new",
  "prost",

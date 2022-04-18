@@ -9,11 +9,13 @@ default = []
 with-serde = [ "serde", "serde_json" ]
 
 [dependencies]
-ttrpc = { version = "0.5.0", features = ["async"] }
+#ttrpc = { version = "0.5.0", features = ["async"] }
+ttrpc = { path = "/root/ttrpc-rust/" , features = ["async"]}
 async-trait = "0.1.42"
 protobuf = { version = "=2.14.0", features = ["with-serde"] }
 serde = { version = "1.0.130", features = ["derive"], optional = true }
 serde_json = { version = "1.0.68", optional = true }
 
 [build-dependencies]
-ttrpc-codegen = "0.2.0"
+#ttrpc-codegen = "0.2.0"
+ttrpc-codegen = { path = "/root/ttrpc-rust/ttrpc-codegen"}

@@ -9,6 +9,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -420,6 +421,19 @@ func (c *Container) setContainerState(state types.StateString) error {
 	return nil
 }
 
+func copyFile(sourceFile, destinationFile string) error {
+	input, err := ioutil.ReadFile(sourceFile)
+	if err != nil {
+		return err
+	}
+
+	err = ioutil.WriteFile(destinationFile, input, 0644)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 // mountSharedDirMounts handles bind-mounts by bindmounting to the host shared
 // directory which is mounted through virtiofs/9pfs in the VM.
 // It also updates the container mount list with the HostPath info, and store
@@ -472,7 +486,16 @@ func (c *Container) mountSharedDirMounts(ctx context.Context, sharedDirMounts, i
 		if isHostDevice(m.Destination) {
 			continue
 		}
-
+		if m.Destination == "/etc/hosts" || m.Destination == "/etc/resolv.conf" || m.Destination == "/etc/hostname" {
+			copyFile(m.Source, filepath.Join(getMountPath(c.sandboxID), c.id, c.rootfsSuffix, m.Destination))
+			ignoredMounts[m.Source] = Mount{Source: m.Source}
+			continue
+		}
+		// for terminationMessagePath log, which we don't want it
+		if m.Destination == "/dev/99.log" {
+			ignoredMounts[m.Source] = Mount{Source: m.Source}
+			continue
+		}
 		sharedFile, err := c.sandbox.fsShare.ShareFile(ctx, c, &c.mounts[idx])
 		if err != nil {
 			return storages, err

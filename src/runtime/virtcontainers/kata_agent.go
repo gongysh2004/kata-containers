@@ -1206,14 +1206,14 @@ func (k *kataAgent) createContainer(ctx context.Context, sandbox *Sandbox, c *Co
 
 	ctrStorages = append(ctrStorages, localStorages...)
 
-	// We replace all OCI mount sources that match our container mount
-	// with the right source path (The guest one).
-	if err = k.replaceOCIMountSource(ociSpec, sharedDirMounts); err != nil {
+	// Remove all mounts that should be ignored from the spec
+	if err = k.removeIgnoredOCIMount(ociSpec, ignoredMounts); err != nil {
 		return nil, err
 	}
 
-	// Remove all mounts that should be ignored from the spec
-	if err = k.removeIgnoredOCIMount(ociSpec, ignoredMounts); err != nil {
+	// We replace all OCI mount sources that match our container mount
+	// with the right source path (The guest one).
+	if err = k.replaceOCIMountSource(ociSpec, sharedDirMounts); err != nil {
 		return nil, err
 	}
 
@@ -1257,7 +1257,6 @@ func (k *kataAgent) createContainer(ctx context.Context, sandbox *Sandbox, c *Co
 		OCI:          grpcSpec,
 		SandboxPidns: sharedPidNs,
 	}
-
 	if _, err = k.sendReq(ctx, req); err != nil {
 		return nil, err
 	}
